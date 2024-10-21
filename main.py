@@ -6,7 +6,7 @@ from aiogram import Bot, Dispatcher, types
 import json
 import easygui
 
-mainpath = '/home/your_username/Desktop/code/Steam/checkersteam/txt'
+mainpath = '/root/ggg'
 desktop_path = '/home/your_username/Desktop'
 
 with open(mainpath + '/words.txt', 'r') as f1:
