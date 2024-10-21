@@ -4,7 +4,6 @@ import os
 import requests
 from aiogram import Bot, Dispatcher, types
 import json
-import easygui
 
 mainpath = '/root/ggg'
 desktop_path = '/home/your_username/Desktop'
