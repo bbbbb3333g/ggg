@@ -23,8 +23,8 @@ if delete == 'yes':
     print('repeaters was delete')
 
 y=0
-YOUR_CHAT_ID = ''
-YOUR_BOT_TOKEN = 2
+YOUR_CHAT_ID = config.CHATID
+YOUR_BOT_TOKEN = config.TOKEN
 STEAMAPI = ''
 bot = Bot(token=YOUR_BOT_TOKEN) 
 s = asyncio.Semaphore(50)
