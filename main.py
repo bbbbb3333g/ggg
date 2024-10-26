@@ -4,6 +4,7 @@ import os
 import requests
 from aiogram import Bot, Dispatcher, types
 import json
+import config 
 
 mainpath = '/root/ggg'
 desktop_path = '/home/your_username/Desktop'
@@ -41,20 +42,22 @@ clean()
         
 async def claim(claimWord):
 
-        sesid = cookies['sessionid']
-
+        sesid = config.cookies['sessionid']
+        sls = config.cookies['steamLoginSecure']
+        
         files = [
             ('type', (None, 'profileSave')),
             ('personaName', (None, 'caulg')),
             ('real_name', (None, 'caulo')),
-            ('customURL', (None, claimWord)),
+            ('customURL', (None, claimword)),
             ('summary', (None, 't.me/caulo')),
             ('sessionID', (None, sesid)),
             ('json', (None, '1')),  
         ]
+        
         response = requests.post(
             'https://steamcommunity.com/profiles/'+sls[:17]+'/edit/',
-            cookies=cookies,
+            cookies=config.cookies,
             files=files,
         )
         return
