@@ -12,7 +12,7 @@ with open(mainpath + '/words.txt', 'r') as f1:
     words = [line.strip().lower() for line in f1.readlines()]
 with open(mainpath + '/banned.txt', 'r') as f4:
     banned_steamwords = [line.strip() for line in f4.readlines()]
-with open(mainpath + '/Claim.txt', 'r') as f6:
+with open(mainpath + '/claim.txt', 'r') as f6:
     claimwords = [line.strip() for line in f6.readlines()]
 alls = claimwords + banned_steamwords
 
