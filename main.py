@@ -21,6 +21,7 @@ if delete == 'yes':
     list(set(words))
     print('repeaters was delete')
 
+y=0
 YOUR_CHAT_ID = ''
 YOUR_BOT_TOKEN = 2
 STEAMAPI = ''
@@ -77,7 +78,7 @@ async def steam(session, word):
                 return
             if len(word) < 2:
                 return
-            
+            global y
             async with session.get(f'https://steamcommunity.com/id/{word}') as response:
                 html_steam = await response.text()
                 response_status = response.status
@@ -93,11 +94,12 @@ async def steam(session, word):
                                 freewords.append(word)
                                 print(f'STEAM free                    {word}')
                                 await claim(word)
-                                with open(mainpath+r'\ClaimSteam.txt', 'a') as f5:
+                                with open(mainpath+r'\claimSteam.txt', 'a') as f5:
                                     f5.write(f'{word}\n')
                                 await bot.send_message(chat_id=YOUR_CHAT_ID, text=f'steam\t @{word}')
                     else:
-                        print(f'STEAM {word} ', response_status)
+                        y+=1
+                        print(f'{y}\r',end='')
 
     except Exception as e:
         await asyncio.sleep(30)
