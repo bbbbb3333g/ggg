@@ -40,14 +40,7 @@ clean()
 
         
 async def claim(claimWord):
-    with open(mainpath+'accounts.json', 'r') as f:
-        acc = json.load(f)
     
-    for i in range(0,50):
-        sesid = acc[f"{i}"]["sessionid"]
-        sls = acc[f"{i}"]["steamLoginSecure"]
-        print(sesid)
-
         cookies = {
             'sessionid': sesid,
             'steamLoginSecure': sls,
