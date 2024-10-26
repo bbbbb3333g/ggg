@@ -6,8 +6,7 @@ from aiogram import Bot, Dispatcher, types
 import json
 import config 
 
-mainpath = '/root/ggg'
-desktop_path = '/home/your_username/Desktop'
+mainpath = os.getcwd()
 
 with open(mainpath + '/words.txt', 'r') as f1:
     words = [line.strip().lower() for line in f1.readlines()]
