@@ -67,34 +67,33 @@ async def claim(claimWord):
 
 async def steam(session, word):
     try:
-        async with s:
 
-            if word in alls: 
-                return
-            if len(word) < 2:
-                return
-            global y
-            async with session.get(f'https://steamcommunity.com/id/{word}') as response:
-                html_steam = await response.text()
-                response_status = response.status
-                if response_status > 400:
-                    await asyncio.sleep(30)
+        if word in alls: 
+            return
+        if len(word) < 2:
+            return
+        global y
+        async with session.get(f'https://steamcommunity.com/id/{word}') as response:
+            html_steam = await response.text()
+            response_status = response.status
+            if response_status > 400:
+                await asyncio.sleep(30)
+            else:
+                if 'The specified profile could not be found.' in html_steam:
+                    if word not in freewords:
+                        print(f'STEAM maybe free                    {word}')
+
+                        r = requests.get(f'https://steamcommunity.com/id/{word}')
+                        if 'The specified profile could not be found.' in r.text:
+                            freewords.append(word)
+                            print(f'STEAM free                    {word}')
+                            await claim(word)
+                            with open(mainpath+r'\claimSteam.txt', 'a') as f5:
+                                f5.write(f'{word}\n')
+                            await bot.send_message(chat_id=YOUR_CHAT_ID, text=f'steam\t @{word}')
                 else:
-                    if 'The specified profile could not be found.' in html_steam:
-                        if word not in freewords:
-                            print(f'STEAM maybe free                    {word}')
-
-                            r = requests.get(f'https://steamcommunity.com/id/{word}')
-                            if 'The specified profile could not be found.' in r.text:
-                                freewords.append(word)
-                                print(f'STEAM free                    {word}')
-                                await claim(word)
-                                with open(mainpath+r'\claimSteam.txt', 'a') as f5:
-                                    f5.write(f'{word}\n')
-                                await bot.send_message(chat_id=YOUR_CHAT_ID, text=f'steam\t @{word}')
-                    else:
-                        y+=1
-                        print(f'{y}\r',end='')
+                    y+=1
+                    print(f'{y}\r',end='')
 
     except Exception as e:
         await asyncio.sleep(30)
