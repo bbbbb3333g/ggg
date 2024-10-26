@@ -40,11 +40,8 @@ clean()
 
         
 async def claim(claimWord):
-    
-        cookies = {
-            'sessionid': sesid,
-            'steamLoginSecure': sls,
-        }
+
+        sesid = cookies['sessionid']
 
         files = [
             ('type', (None, 'profileSave')),
