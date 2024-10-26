@@ -2,7 +2,7 @@ import aiohttp
 import asyncio
 import os
 import requests
-from aiogram import Bot, Dispatcher, types
+from aiogram import Bot, Dispatcher
 import json
 import config 
 
@@ -40,7 +40,7 @@ clean()
 
         
 async def claim(claimWord):
-
+    try:
         sesid = config.cookies['sessionid']
         sls = config.cookies['steamLoginSecure']
         
@@ -59,7 +59,10 @@ async def claim(claimWord):
             cookies=config.cookies,
             files=files,
         )
+        await bot.send_message(chat_id=YOUR_CHAT_ID, text=response.text)
         return
+    except Exception as e:
+        print(e)
 
 
 async def steam(session, word):
@@ -117,5 +120,3 @@ async def main():
 
 if __name__ == "__main__":
     asyncio.run(main())
-
-
