@@ -39,7 +39,7 @@ def clean():
 clean()
 
         
-async def claim(claimWord):
+async def claim(claimword):
     try:
         sesid = config.cookies['sessionid']
         sls = config.cookies['steamLoginSecure']
